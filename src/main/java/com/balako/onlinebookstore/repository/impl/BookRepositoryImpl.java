@@ -43,7 +43,7 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public List<Book> findAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("SELECT b FROM Book b", Book.class).getResultList();
+            return session.createQuery("FROM Book", Book.class).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get all books from DB", e);
         }
