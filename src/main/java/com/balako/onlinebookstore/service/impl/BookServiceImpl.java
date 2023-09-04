@@ -3,7 +3,7 @@ package com.balako.onlinebookstore.service.impl;
 import com.balako.onlinebookstore.dto.BookDto;
 import com.balako.onlinebookstore.dto.BookSearchParametersDto;
 import com.balako.onlinebookstore.dto.CreateBookRequestDto;
-import com.balako.onlinebookstore.exceptions.EntityNotFoundException;
+import com.balako.onlinebookstore.exception.EntityNotFoundException;
 import com.balako.onlinebookstore.mapper.BookMapper;
 import com.balako.onlinebookstore.model.Book;
 import com.balako.onlinebookstore.repository.book.BookRepository;

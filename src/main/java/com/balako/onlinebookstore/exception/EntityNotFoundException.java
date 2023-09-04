@@ -1,4 +1,4 @@
-package com.balako.onlinebookstore.exceptions;
+package com.balako.onlinebookstore.exception;
 
 public class EntityNotFoundException extends RuntimeException {
     public EntityNotFoundException(String message) {

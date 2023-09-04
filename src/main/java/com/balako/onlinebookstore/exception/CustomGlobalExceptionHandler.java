@@ -1,4 +1,4 @@
-package com.balako.onlinebookstore.exceptions;
+package com.balako.onlinebookstore.exception;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
