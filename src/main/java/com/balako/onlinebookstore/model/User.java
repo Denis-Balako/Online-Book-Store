@@ -34,5 +34,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+    @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
 }
