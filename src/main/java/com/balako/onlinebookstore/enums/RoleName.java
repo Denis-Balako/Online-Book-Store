@@ -1,6 +1,6 @@
 package com.balako.onlinebookstore.enums;
 
 public enum RoleName {
-    ADMIN,
-    USER
+    ROLE_ADMIN,
+    ROLE_USER
 }

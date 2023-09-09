@@ -1,8 +1,8 @@
 package com.balako.onlinebookstore.service.impl;
 
-import com.balako.onlinebookstore.dto.BookDto;
-import com.balako.onlinebookstore.dto.BookSearchParametersDto;
-import com.balako.onlinebookstore.dto.CreateBookRequestDto;
+import com.balako.onlinebookstore.dto.book.BookDto;
+import com.balako.onlinebookstore.dto.book.BookSearchParametersDto;
+import com.balako.onlinebookstore.dto.book.CreateBookRequestDto;
 import com.balako.onlinebookstore.exception.EntityNotFoundException;
 import com.balako.onlinebookstore.mapper.BookMapper;
 import com.balako.onlinebookstore.model.Book;
@@ -50,7 +50,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDto updateBookById(Long id, CreateBookRequestDto requestDto) {
+    public BookDto update(Long id, CreateBookRequestDto requestDto) {
         Book book = bookMapper.toModel(requestDto);
         book.setId(id);
         return bookMapper.toDto(bookRepository.save(book));
