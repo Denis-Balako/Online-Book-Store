@@ -30,11 +30,7 @@ public class UserServiceImpl implements UserService {
             throw new RegistrationException("Unable to complete registration");
         }
         User user = userMapper.toModel(request);
-        user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setShippingAddress(request.getShippingAddress());
         Role role = roleRepository.getByName(RoleName.ROLE_USER);
         user.setRoles(Set.of(role));
         User savedUser = userRepository.save(user);
