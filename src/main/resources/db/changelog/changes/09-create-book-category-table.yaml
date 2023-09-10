@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-book-category-table
+      author: denys
+      changes:
+        - createTable:
+            tableName: book-category
+            columns:
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
