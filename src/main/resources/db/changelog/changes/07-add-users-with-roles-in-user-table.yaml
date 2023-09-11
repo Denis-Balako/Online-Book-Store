@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-users-with-roles-in-user-table
+      author: denys
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: email
+                  value: denis@example.com
+              - column:
+                  name: first_name
+                  value: Denys
+              - column:
+                  name: last_name
+                  value: Balako
+              - column:
+                  name: password
+                  value: $2a$12$byj7dlaXv25fV0JSvtiZ5uW/PE3yEhaziixoVofDr4AhS2EP.sH6i
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+              - column:
+                  name: role_id
+                  valueNumeric: 1

@@ -1,8 +1,8 @@
 package com.balako.onlinebookstore.service;
 
-import com.balako.onlinebookstore.dto.BookDto;
-import com.balako.onlinebookstore.dto.BookSearchParametersDto;
-import com.balako.onlinebookstore.dto.CreateBookRequestDto;
+import com.balako.onlinebookstore.dto.book.BookDto;
+import com.balako.onlinebookstore.dto.book.BookSearchParametersDto;
+import com.balako.onlinebookstore.dto.book.CreateBookRequestDto;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 
@@ -15,7 +15,7 @@ public interface BookService {
 
     void deleteById(Long id);
 
-    BookDto updateBookById(Long id, CreateBookRequestDto requestDto);
+    BookDto update(Long id, CreateBookRequestDto requestDto);
 
     List<BookDto> search(BookSearchParametersDto params);
 }
