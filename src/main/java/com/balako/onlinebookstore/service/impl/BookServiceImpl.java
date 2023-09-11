@@ -63,4 +63,10 @@ public class BookServiceImpl implements BookService {
                 .map(bookMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public List<BookDto> findAllByCategoryId(Long id) {
+        //TODO: implement
+        return null;
+    }
 }
