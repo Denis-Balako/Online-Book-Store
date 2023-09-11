@@ -1,6 +1,6 @@
 package com.balako.onlinebookstore.controller;
 
-import com.balako.onlinebookstore.dto.book.BookDto;
+import com.balako.onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
 import com.balako.onlinebookstore.dto.category.CategoryDto;
 import com.balako.onlinebookstore.dto.category.CreateCategoryRequestDto;
 import com.balako.onlinebookstore.service.BookService;
@@ -37,7 +37,8 @@ public class CategoryController {
             description = "Create a new category. "
             + "Validation included.")
     public CategoryDto createCategory(
-            @RequestBody @Valid CreateCategoryRequestDto requestDto) {
+            @RequestBody @Valid CreateCategoryRequestDto requestDto
+    ) {
         return categoryService.save(requestDto);
     }
 
@@ -62,7 +63,8 @@ public class CategoryController {
             + "Validation included.")
     public CategoryDto updateCategory(
             @PathVariable Long id,
-            @RequestBody @Valid CreateCategoryRequestDto requestDto) {
+            @RequestBody @Valid CreateCategoryRequestDto requestDto
+    ) {
         return categoryService.update(id, requestDto);
     }
 
@@ -76,7 +78,9 @@ public class CategoryController {
 
     @GetMapping("/{id}/books")
     @Operation(summary = "Get books by category ID")
-    public List<BookDto> getBooksByCategoryId(@PathVariable Long id) {
+    public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(
+            @PathVariable Long id
+    ) {
         return bookService.findAllByCategoryId(id);
     }
 }
