@@ -1,6 +1,7 @@
 package com.balako.onlinebookstore.service.impl;
 
 import com.balako.onlinebookstore.dto.book.BookDto;
+import com.balako.onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
 import com.balako.onlinebookstore.dto.book.BookSearchParametersDto;
 import com.balako.onlinebookstore.dto.book.CreateBookRequestDto;
 import com.balako.onlinebookstore.exception.EntityNotFoundException;
@@ -30,7 +31,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> findAll(Pageable pageable) {
-        return bookRepository.findAll(pageable)
+        return bookRepository.findAllWithCategories(pageable)
                 .stream()
                 .map(bookMapper::toDto)
                 .toList();
@@ -38,7 +39,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto getById(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(
+        Book book = bookRepository.findByIdWithCategories(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find book by id: " + id)
         );
         return bookMapper.toDto(book);
@@ -59,8 +60,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDto> search(BookSearchParametersDto params) {
         Specification<Book> bookSpecification = bookSpecificationBuilder.build(params);
-        return bookRepository.findAll(bookSpecification).stream()
+        return bookRepository.findAllWithCategories(bookSpecification)
+                .stream()
                 .map(bookMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> findAllByCategoryId(Long id) {
+        return bookRepository.findAllByCategoryId(id).stream()
+                .map(bookMapper::toDtoWithoutCategories)
                 .toList();
     }
 }
