@@ -1,9 +1,7 @@
 package com.balako.onlinebookstore.exception;
 
 import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -26,37 +24,42 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             HttpStatusCode status,
             WebRequest request
     ) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST);
         List<String> errors = ex.getBindingResult().getAllErrors()
                 .stream()
                 .map(this::getErrorMessage)
                 .toList();
-        body.put("errors", errors);
-        return new ResponseEntity<>(body, headers, status);
+        ErrorResponse response = getErrorResponse(
+                LocalDateTime.now(), HttpStatus.BAD_REQUEST, errors);
+        return new ResponseEntity<>(response, headers, status);
     }
 
     @ExceptionHandler({RegistrationException.class})
     protected ResponseEntity<Object> handleRegistrationException(
             RegistrationException ex
     ) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST);
-        body.put("error", ex.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        ErrorResponse response = getErrorResponse(
+                LocalDateTime.now(), HttpStatus.BAD_REQUEST, List.of(ex.getMessage()));
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     protected ResponseEntity<Object> handleAccessDeniedException(
             AccessDeniedException ex
     ) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST);
-        body.put("error", ex.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
+        ErrorResponse response = getErrorResponse(
+                LocalDateTime.now(), HttpStatus.BAD_REQUEST, List.of(ex.getMessage()));
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+    }
+
+    private ErrorResponse getErrorResponse(
+            LocalDateTime timestamp,
+            HttpStatus status,
+            List<String> errors) {
+        ErrorResponse response = new ErrorResponse();
+        response.setTimestamp(timestamp);
+        response.setStatus(status);
+        response.setErrors(errors);
+        return response;
     }
 
     private String getErrorMessage(ObjectError error) {
