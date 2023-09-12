@@ -1,7 +1,7 @@
 package com.balako.onlinebookstore.service.impl;
 
-import com.balako.onlinebookstore.dto.user.UserRegistrationRequestDto;
-import com.balako.onlinebookstore.dto.user.UserRegistrationResponseDto;
+import com.balako.onlinebookstore.dto.user.request.UserRegistrationRequestDto;
+import com.balako.onlinebookstore.dto.user.response.UserRegistrationResponseDto;
 import com.balako.onlinebookstore.enums.RoleName;
 import com.balako.onlinebookstore.exception.RegistrationException;
 import com.balako.onlinebookstore.mapper.UserMapper;

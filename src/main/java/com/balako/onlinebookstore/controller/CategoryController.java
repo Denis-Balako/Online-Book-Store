@@ -1,8 +1,8 @@
 package com.balako.onlinebookstore.controller;
 
-import com.balako.onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
-import com.balako.onlinebookstore.dto.category.CategoryDto;
-import com.balako.onlinebookstore.dto.category.CreateCategoryRequestDto;
+import com.balako.onlinebookstore.dto.book.response.BookDtoWithoutCategoryIds;
+import com.balako.onlinebookstore.dto.category.response.CategoryDto;
+import com.balako.onlinebookstore.dto.category.request.CreateCategoryRequestDto;
 import com.balako.onlinebookstore.service.BookService;
 import com.balako.onlinebookstore.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,9 +1,9 @@
 package com.balako.onlinebookstore.mapper;
 
 import com.balako.onlinebookstore.config.MapperConfig;
-import com.balako.onlinebookstore.dto.book.BookDto;
-import com.balako.onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
-import com.balako.onlinebookstore.dto.book.CreateBookRequestDto;
+import com.balako.onlinebookstore.dto.book.response.BookDto;
+import com.balako.onlinebookstore.dto.book.response.BookDtoWithoutCategoryIds;
+import com.balako.onlinebookstore.dto.book.request.CreateBookRequestDto;
 import com.balako.onlinebookstore.model.Book;
 import com.balako.onlinebookstore.model.Category;
 import java.util.Set;

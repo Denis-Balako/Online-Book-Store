@@ -1,4 +1,4 @@
-package com.balako.onlinebookstore.dto.user;
+package com.balako.onlinebookstore.dto.user.response;
 
 import lombok.Data;
 

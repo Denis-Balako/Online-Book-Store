@@ -1,7 +1,7 @@
 package com.balako.onlinebookstore.service.impl;
 
-import com.balako.onlinebookstore.dto.user.UserLoginRequestDto;
-import com.balako.onlinebookstore.dto.user.UserLoginResponseDto;
+import com.balako.onlinebookstore.dto.user.request.UserLoginRequestDto;
+import com.balako.onlinebookstore.dto.user.response.UserLoginResponseDto;
 import com.balako.onlinebookstore.security.JwtUtil;
 import com.balako.onlinebookstore.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;

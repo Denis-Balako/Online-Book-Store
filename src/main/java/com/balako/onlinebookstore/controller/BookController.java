@@ -1,8 +1,8 @@
 package com.balako.onlinebookstore.controller;
 
-import com.balako.onlinebookstore.dto.book.BookDto;
-import com.balako.onlinebookstore.dto.book.BookSearchParametersDto;
-import com.balako.onlinebookstore.dto.book.CreateBookRequestDto;
+import com.balako.onlinebookstore.dto.book.response.BookDto;
+import com.balako.onlinebookstore.dto.book.request.BookSearchParametersDto;
+import com.balako.onlinebookstore.dto.book.request.CreateBookRequestDto;
 import com.balako.onlinebookstore.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

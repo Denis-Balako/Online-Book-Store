@@ -1,4 +1,4 @@
-package com.balako.onlinebookstore.dto.category;
+package com.balako.onlinebookstore.dto.category.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
