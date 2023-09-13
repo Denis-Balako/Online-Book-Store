@@ -23,5 +23,5 @@ public class Category {
     private String name;
     private String description;
     @Column(name = "is_deleted", nullable = false)
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 }

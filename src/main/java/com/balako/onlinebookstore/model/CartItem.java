@@ -34,5 +34,5 @@ public class CartItem {
     @Column(nullable = false)
     private int quantity;
     @Column(name = "is_deleted", nullable = false)
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 }

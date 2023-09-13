@@ -32,5 +32,5 @@ public class ShoppingCart {
     @OneToMany(mappedBy = "shoppingCart")
     private Set<CartItem> cartItems;
     @Column(name = "is_deleted", nullable = false)
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 }
