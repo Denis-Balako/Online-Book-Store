@@ -6,6 +6,7 @@ import com.balako.onlinebookstore.dto.cart.response.CartDto;
 import com.balako.onlinebookstore.dto.cart.response.CartItemDto;
 import com.balako.onlinebookstore.service.CartService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +27,7 @@ public class CartController {
     private final CartService cartService;
 
     @PostMapping
-    public CartItemDto create(@RequestBody CreateCartItemDto requestDto) {
+    public CartItemDto create(@RequestBody @Valid CreateCartItemDto requestDto) {
         return cartService.save(requestDto);
     }
 
@@ -37,7 +38,7 @@ public class CartController {
 
     @PutMapping("/cart-items/{id}")
     public CartItemDto update(@PathVariable Long id,
-            @RequestBody UpdateCartItemDto requestDto) {
+            @RequestBody @Valid UpdateCartItemDto requestDto) {
         return cartService.update(id, requestDto);
     }
 

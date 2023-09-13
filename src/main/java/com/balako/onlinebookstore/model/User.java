@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import java.util.Collection;
 import java.util.Set;
 import lombok.Data;
@@ -23,6 +24,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @SQLDelete(sql = "UPDATE user SET is_deleted = true WHERE id = ?")
 @Where(clause = "is_deleted=false")
 @Entity
+@Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
