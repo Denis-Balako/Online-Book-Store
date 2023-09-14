@@ -14,6 +14,7 @@ import com.balako.onlinebookstore.repository.cart.ShoppingCartRepository;
 import com.balako.onlinebookstore.repository.cartitem.CartItemRepository;
 import com.balako.onlinebookstore.service.CartService;
 import com.balako.onlinebookstore.service.UserService;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +38,7 @@ public class CartServiceImpl implements CartService {
         User user = userService.getCurrentAuthenticatedUser();
         ShoppingCart cart = cartRepository.findByUser(user).orElseThrow(
                 () -> new EntityNotFoundException("Can't find cart by user email: "
-                        + user.getEmail())
-        );
+                        + user.getEmail()));
 
         cartItem.setShoppingCart(cart);
         cartItem.setQuantity(requestDto.getQuantity());
@@ -47,7 +47,17 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartDto findAll() {
-        return null;
+        User user = userService.getCurrentAuthenticatedUser();
+        ShoppingCart cart = cartRepository.findByUserWithCartItems(user.getId()).orElseThrow(
+                () -> new EntityNotFoundException("Can't find cart by user email: "
+                        + user.getEmail()));
+        CartDto cartDto = new CartDto();
+        cartDto.setId(cart.getId());
+        cartDto.setUserId(user.getId());
+        cartDto.setCartItems(cart.getCartItems().stream()
+                .map(cartItemMapper::toDto)
+                .collect(Collectors.toSet()));
+        return cartDto;
     }
 
     @Override
