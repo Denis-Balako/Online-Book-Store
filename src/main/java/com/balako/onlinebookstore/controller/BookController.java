@@ -37,6 +37,7 @@ public class BookController {
         return bookService.save(requestDto);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
     @Operation(summary = "Get all books", description = "Get list of available books. "
             + "Pagination and sorting included.")
@@ -44,12 +45,14 @@ public class BookController {
         return bookService.findAll(pageable);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}")
     @Operation(summary = "Get book by ID")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getById(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/search")
     @Operation(summary = "Search books by filter", description = "Search books by filter. "
             + "Available filters: title, author, isbn.")

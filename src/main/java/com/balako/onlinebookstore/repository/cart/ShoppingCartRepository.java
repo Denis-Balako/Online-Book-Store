@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
     Optional<ShoppingCart> findByUser(User user);
 
-    @Query("SELECT DISTINCT sc FROM ShoppingCart sc "
+    @Query("FROM ShoppingCart sc "
             + "LEFT JOIN FETCH sc.cartItems ci "
             + "LEFT JOIN FETCH ci.book "
             + "LEFT JOIN FETCH sc.user u WHERE u.id = :userId ")

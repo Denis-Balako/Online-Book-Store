@@ -8,7 +8,7 @@ import com.balako.onlinebookstore.dto.cart.response.CartItemDto;
 public interface CartService {
     CartItemDto save(CreateCartItemDto requestDto);
 
-    CartDto findAll();
+    CartDto getCart();
 
     CartItemDto update(Long id, UpdateCartItemDto requestDto);
 

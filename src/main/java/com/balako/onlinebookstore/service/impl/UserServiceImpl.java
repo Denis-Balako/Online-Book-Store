@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     public User getCurrentAuthenticatedUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByEmail(username).orElseThrow(
-                () -> new EntityNotFoundException("Can't find user by email: "
+                () -> new EntityNotFoundException("Can't find user by username: "
                         + username));
     }
 }

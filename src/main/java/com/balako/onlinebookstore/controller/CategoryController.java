@@ -42,6 +42,7 @@ public class CategoryController {
         return categoryService.save(requestDto);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
     @Operation(summary = "Get all categories",
             description = "Get list of available categories. "
@@ -50,6 +51,7 @@ public class CategoryController {
         return categoryService.findAll(pageable);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}")
     @Operation(summary = "Get category by ID")
     public CategoryDto getCategoryById(@PathVariable Long id) {
@@ -76,6 +78,7 @@ public class CategoryController {
         categoryService.deleteById(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}/books")
     @Operation(summary = "Get books by category ID")
     public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(

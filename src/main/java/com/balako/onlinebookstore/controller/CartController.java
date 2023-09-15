@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CartController {
     private final CartService cartService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
     @Operation(summary = "Create a new cart item.",
             description = "Create a new cart item in cart. "
@@ -37,13 +37,14 @@ public class CartController {
         return cartService.save(requestDto);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
     @Operation(summary = "Get all cart items from user cart.")
-    public CartDto getAll() {
-        return cartService.findAll();
+    public CartDto getCart() {
+        return cartService.getCart();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PutMapping("/cart-items/{id}")
     @Operation(summary = "Update a cart item by ID",
             description = "Update a cart item by ID. "
@@ -53,7 +54,7 @@ public class CartController {
         return cartService.update(id, requestDto);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping("/cart-items/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete a cart item by ID")

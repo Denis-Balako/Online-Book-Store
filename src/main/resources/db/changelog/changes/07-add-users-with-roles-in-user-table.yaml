@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: add-users-with-roles-in-user-table
-      author: denys
+      author: denys_balako
       changes:
         - insert:
             tableName: users

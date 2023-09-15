@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: add-cart-to-admin-user
-      author: denys
+      author: denys_balako
       changes:
         - insert:
             tableName: cart

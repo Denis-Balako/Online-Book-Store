@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
-    @Query("SELECT DISTINCT ci FROM CartItem ci "
-            + "LEFT JOIN FETCH ci.book WHERE ci.id = :cartItemId")
+    @Query("FROM CartItem ci LEFT JOIN FETCH ci.book WHERE ci.id = :cartItemId")
     Optional<CartItem> findByIdWithBook(@Param("cartItemId") Long id);
 }
