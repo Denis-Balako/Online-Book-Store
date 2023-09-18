@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: create-cart-item-table
-      author: denys
+      author: denys_balako
       changes:
         - createTable:
             tableName: cart_item
@@ -17,7 +17,7 @@ databaseChangeLog:
                   name: cart_id
                   type: bigint
                   constraints:
-                    foreignKeyName: cart_id
+                    foreignKeyName: fk_cart_id
                     references: cart(id)
                     nullable: false
               - column:

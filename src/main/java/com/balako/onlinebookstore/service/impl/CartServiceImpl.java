@@ -6,6 +6,7 @@ import com.balako.onlinebookstore.dto.cart.response.CartDto;
 import com.balako.onlinebookstore.dto.cart.response.CartItemDto;
 import com.balako.onlinebookstore.exception.EntityNotFoundException;
 import com.balako.onlinebookstore.mapper.CartItemMapper;
+import com.balako.onlinebookstore.mapper.ShoppingCartMapper;
 import com.balako.onlinebookstore.model.CartItem;
 import com.balako.onlinebookstore.model.ShoppingCart;
 import com.balako.onlinebookstore.model.User;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class CartServiceImpl implements CartService {
+    private final ShoppingCartMapper shoppingCartMapper;
     private final CartItemMapper cartItemMapper;
     private final BookRepository bookRepository;
     private final ShoppingCartRepository cartRepository;
@@ -46,14 +48,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public CartDto findAll() {
+    public CartDto getCart() {
         User user = userService.getCurrentAuthenticatedUser();
         ShoppingCart cart = cartRepository.findByUserWithCartItems(user.getId()).orElseThrow(
                 () -> new EntityNotFoundException("Can't find cart by user email: "
                         + user.getEmail()));
-        CartDto cartDto = new CartDto();
-        cartDto.setId(cart.getId());
-        cartDto.setUserId(user.getId());
+        CartDto cartDto = shoppingCartMapper.toDto(cart);
         cartDto.setCartItems(cart.getCartItems().stream()
                 .map(cartItemMapper::toDto)
                 .collect(Collectors.toSet()));
