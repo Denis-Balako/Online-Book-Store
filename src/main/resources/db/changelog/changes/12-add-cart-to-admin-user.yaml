@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-cart-to-admin-user
+      author: denys_balako
+      changes:
+        - insert:
+            tableName: cart
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+              - column:
+                  name: is_deleted
+                  valueBoolean: false

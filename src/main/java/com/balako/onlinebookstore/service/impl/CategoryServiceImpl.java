@@ -1,7 +1,7 @@
 package com.balako.onlinebookstore.service.impl;
 
-import com.balako.onlinebookstore.dto.category.CategoryDto;
-import com.balako.onlinebookstore.dto.category.CreateCategoryRequestDto;
+import com.balako.onlinebookstore.dto.category.request.CreateCategoryRequestDto;
+import com.balako.onlinebookstore.dto.category.response.CategoryDto;
 import com.balako.onlinebookstore.exception.EntityNotFoundException;
 import com.balako.onlinebookstore.mapper.CategoryMapper;
 import com.balako.onlinebookstore.model.Category;

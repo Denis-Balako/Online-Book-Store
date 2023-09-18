@@ -1,7 +1,7 @@
 package com.balako.onlinebookstore.service;
 
-import com.balako.onlinebookstore.dto.category.CategoryDto;
-import com.balako.onlinebookstore.dto.category.CreateCategoryRequestDto;
+import com.balako.onlinebookstore.dto.category.request.CreateCategoryRequestDto;
+import com.balako.onlinebookstore.dto.category.response.CategoryDto;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 

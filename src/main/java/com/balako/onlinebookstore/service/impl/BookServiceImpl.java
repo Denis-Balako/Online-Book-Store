@@ -1,9 +1,9 @@
 package com.balako.onlinebookstore.service.impl;
 
-import com.balako.onlinebookstore.dto.book.BookDto;
-import com.balako.onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
-import com.balako.onlinebookstore.dto.book.BookSearchParametersDto;
-import com.balako.onlinebookstore.dto.book.CreateBookRequestDto;
+import com.balako.onlinebookstore.dto.book.request.BookSearchParametersDto;
+import com.balako.onlinebookstore.dto.book.request.CreateBookRequestDto;
+import com.balako.onlinebookstore.dto.book.response.BookDto;
+import com.balako.onlinebookstore.dto.book.response.BookDtoWithoutCategoryIds;
 import com.balako.onlinebookstore.exception.EntityNotFoundException;
 import com.balako.onlinebookstore.mapper.BookMapper;
 import com.balako.onlinebookstore.model.Book;
@@ -60,7 +60,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDto> search(BookSearchParametersDto params) {
         Specification<Book> bookSpecification = bookSpecificationBuilder.build(params);
-        return bookRepository.findAllWithCategories(bookSpecification)
+        return bookRepository.findAll(bookSpecification)
                 .stream()
                 .map(bookMapper::toDto)
                 .toList();

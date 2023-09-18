@@ -1,4 +1,4 @@
-package com.balako.onlinebookstore.dto.user;
+package com.balako.onlinebookstore.dto.user.request;
 
 import com.balako.onlinebookstore.validation.FieldsValueMatch;
 import jakarta.validation.constraints.Email;

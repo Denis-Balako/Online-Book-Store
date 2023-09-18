@@ -1,6 +1,6 @@
 package com.balako.onlinebookstore.repository.book;
 
-import com.balako.onlinebookstore.dto.book.BookSearchParametersDto;
+import com.balako.onlinebookstore.dto.book.request.BookSearchParametersDto;
 import com.balako.onlinebookstore.model.Book;
 import com.balako.onlinebookstore.repository.SpecificationBuilder;
 import com.balako.onlinebookstore.repository.SpecificationProviderManager;

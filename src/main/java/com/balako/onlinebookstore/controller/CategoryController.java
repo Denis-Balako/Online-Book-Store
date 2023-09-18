@@ -1,8 +1,8 @@
 package com.balako.onlinebookstore.controller;
 
-import com.balako.onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
-import com.balako.onlinebookstore.dto.category.CategoryDto;
-import com.balako.onlinebookstore.dto.category.CreateCategoryRequestDto;
+import com.balako.onlinebookstore.dto.book.response.BookDtoWithoutCategoryIds;
+import com.balako.onlinebookstore.dto.category.request.CreateCategoryRequestDto;
+import com.balako.onlinebookstore.dto.category.response.CategoryDto;
 import com.balako.onlinebookstore.service.BookService;
 import com.balako.onlinebookstore.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,6 +42,7 @@ public class CategoryController {
         return categoryService.save(requestDto);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
     @Operation(summary = "Get all categories",
             description = "Get list of available categories. "
@@ -50,6 +51,7 @@ public class CategoryController {
         return categoryService.findAll(pageable);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}")
     @Operation(summary = "Get category by ID")
     public CategoryDto getCategoryById(@PathVariable Long id) {
@@ -76,6 +78,7 @@ public class CategoryController {
         categoryService.deleteById(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}/books")
     @Operation(summary = "Get books by category ID")
     public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(

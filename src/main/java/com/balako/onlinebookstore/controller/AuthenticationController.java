@@ -1,9 +1,9 @@
 package com.balako.onlinebookstore.controller;
 
-import com.balako.onlinebookstore.dto.user.UserLoginRequestDto;
-import com.balako.onlinebookstore.dto.user.UserLoginResponseDto;
-import com.balako.onlinebookstore.dto.user.UserRegistrationRequestDto;
-import com.balako.onlinebookstore.dto.user.UserRegistrationResponseDto;
+import com.balako.onlinebookstore.dto.user.request.UserLoginRequestDto;
+import com.balako.onlinebookstore.dto.user.request.UserRegistrationRequestDto;
+import com.balako.onlinebookstore.dto.user.response.UserLoginResponseDto;
+import com.balako.onlinebookstore.dto.user.response.UserRegistrationResponseDto;
 import com.balako.onlinebookstore.exception.RegistrationException;
 import com.balako.onlinebookstore.service.AuthenticationService;
 import com.balako.onlinebookstore.service.UserService;
