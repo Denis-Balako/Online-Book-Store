@@ -9,5 +9,6 @@ import org.mapstruct.Mapping;
 @Mapper(config = MapperConfig.class)
 public interface ShoppingCartMapper {
     @Mapping(target = "cartItems", ignore = true)
+    @Mapping(target = "userId", source = "cart.user.id")
     CartDto toDto(ShoppingCart cart);
 }

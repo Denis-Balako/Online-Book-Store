@@ -4,11 +4,12 @@ databaseChangeLog:
       author: denys_balako
       changes:
         - createTable:
-            tableName: order
+            tableName: orders
             columns:
               - column:
                   name: id
                   type: bigint
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
