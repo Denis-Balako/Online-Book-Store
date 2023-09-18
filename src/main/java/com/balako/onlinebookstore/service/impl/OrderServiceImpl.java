@@ -72,16 +72,35 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto update(Long id, UpdateOrderRequestDto requestDto) {
-        return null;
+        Order order = orderRepository.findByIdWithItems(id).orElseThrow(
+                () -> new EntityNotFoundException("Can't find order by id: " + id)
+        );
+        try {
+            order.setStatus(Status.valueOf(requestDto.status()));
+        } catch (IllegalArgumentException e) {
+            throw new EntityNotFoundException("Can't find status with name: "
+                    + requestDto.status());
+        }
+        return orderMapper.toDto(orderRepository.save(order));
     }
 
     @Override
-    public List<OrderItemDto> findAllOrderItems(Pageable pageable) {
-        return null;
+    public List<OrderItemDto> findAllOrderItems(Long orderId, Pageable pageable) {
+        User user = userService.getCurrentAuthenticatedUser();
+        return orderItemRepository
+                .findAllByOrderIdAndUserId(orderId, user.getId(), pageable).stream()
+                .map(orderItemMapper::toDto)
+                .toList();
     }
 
     @Override
     public OrderItemDto getOrderItem(Long orderId, Long itemId) {
-        return null;
+        User user = userService.getCurrentAuthenticatedUser();
+        return orderItemRepository
+                .findByIdAndOrderIdAndUserId(itemId, orderId, user.getId())
+                .map(orderItemMapper::toDto)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Can't find order item by id: " + itemId
+                ));
     }
 }

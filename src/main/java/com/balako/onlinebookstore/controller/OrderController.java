@@ -41,8 +41,9 @@ public class OrderController {
     }
 
     @GetMapping("/{id}/items")
-    public List<OrderItemDto> getAllOrderItems(Pageable pageable) {
-        return orderService.findAllOrderItems(pageable);
+    public List<OrderItemDto> getAllOrderItems(@PathVariable Long id,
+                                               Pageable pageable) {
+        return orderService.findAllOrderItems(id, pageable);
     }
 
     @GetMapping("/{orderId}/items/{itemId}")
