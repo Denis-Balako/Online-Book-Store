@@ -1,6 +1,6 @@
 package com.balako.onlinebookstore.dto.order.response;
 
-import com.balako.onlinebookstore.enums.Status;
+import com.balako.onlinebookstore.enums.OrderStatus;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -13,5 +13,5 @@ public class OrderDto {
     private Set<OrderItemDto> orderItems;
     private LocalDateTime orderDate;
     private BigDecimal total;
-    private Status status;
+    private OrderStatus status;
 }

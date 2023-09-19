@@ -1,6 +1,6 @@
 package com.balako.onlinebookstore.model;
 
-import com.balako.onlinebookstore.enums.Status;
+import com.balako.onlinebookstore.enums.OrderStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,7 +37,7 @@ public class Order {
     private User user;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status status;
+    private OrderStatus status;
     @Column(nullable = false)
     private BigDecimal total;
     @Column(name = "order_date", nullable = false)
