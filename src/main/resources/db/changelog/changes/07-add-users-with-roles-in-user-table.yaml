@@ -23,7 +23,16 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_id
-                  valueNumeric: 1
+                  valueComputed: 1
               - column:
                   name: role_id
-                  valueNumeric: 1
+                  valueComputed: 1
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: 1
+              - column:
+                  name: role_id
+                  valueComputed: 2

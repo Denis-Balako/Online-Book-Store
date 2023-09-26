@@ -8,10 +8,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueNumeric: 1
+                  valueComputed: 1
               - column:
                   name: user_id
-                  valueNumeric: 1
+                  valueComputed: 1
               - column:
                   name: is_deleted
                   valueBoolean: false
