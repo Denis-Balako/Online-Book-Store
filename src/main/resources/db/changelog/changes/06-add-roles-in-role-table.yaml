@@ -4,13 +4,13 @@ databaseChangeLog:
       author: denys_balako
       changes:
         - insert:
-            tableName: role
+            tableName: roles
             columns:
               - column:
                   name: name
                   value: ROLE_ADMIN
         - insert:
-            tableName: role
+            tableName: roles
             columns:
               - column:
                   name: name
