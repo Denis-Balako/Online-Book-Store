@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -116,12 +115,9 @@ public class BookServiceTest {
         BookDto actual = bookService.save(REQUEST_DTO);
 
         assertEquals(BOOK_DTO, actual);
-        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
-                .save(any(Book.class));
-        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toModel(any(CreateBookRequestDto.class));
-        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Book.class));
+        verify(bookRepository).save(any(Book.class));
+        verify(bookMapper).toModel(any(CreateBookRequestDto.class));
+        verify(bookMapper).toDto(any(Book.class));
     }
 
     @Test
@@ -135,10 +131,8 @@ public class BookServiceTest {
         List<BookDto> actual = bookService.findAll(pageable);
 
         assertEquals(List.of(BOOK_DTO), actual);
-        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Book.class));
-        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
-                .findAllWithCategories(pageable);
+        verify(bookMapper).toDto(any(Book.class));
+        verify(bookRepository).findAllWithCategories(pageable);
     }
 
     @Test
@@ -151,10 +145,8 @@ public class BookServiceTest {
         BookDto actual = bookService.getById(BOOK_ID);
 
         assertEquals(BOOK_DTO, actual);
-        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Book.class));
-        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
-                .findByIdWithCategories(anyLong());
+        verify(bookMapper).toDto(any(Book.class));
+        verify(bookRepository).findByIdWithCategories(anyLong());
     }
 
     @Test
@@ -169,8 +161,7 @@ public class BookServiceTest {
                         () -> bookService.getById(BOOK_ID));
 
         assertEquals(expectedMessage, exception.getMessage());
-        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
-                .findByIdWithCategories(anyLong());
+        verify(bookRepository).findByIdWithCategories(anyLong());
         verifyNoMoreInteractions(bookRepository);
         verifyNoInteractions(bookMapper);
     }
@@ -180,8 +171,7 @@ public class BookServiceTest {
     public void deleteById_validId_deleteSuccessful() {
         assertDoesNotThrow(() -> bookService.deleteById(BOOK_ID));
 
-        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
-                .deleteById(BOOK_ID);
+        verify(bookRepository).deleteById(BOOK_ID);
     }
 
     @Test
@@ -195,12 +185,9 @@ public class BookServiceTest {
         BookDto actual = bookService.update(BOOK_ID, REQUEST_DTO);
 
         assertEquals(BOOK_DTO, actual);
-        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
-                .save(any(Book.class));
-        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toModel(any(CreateBookRequestDto.class));
-        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Book.class));
+        verify(bookRepository).save(any(Book.class));
+        verify(bookMapper).toModel(any(CreateBookRequestDto.class));
+        verify(bookMapper).toDto(any(Book.class));
     }
 
     @Test
@@ -215,12 +202,9 @@ public class BookServiceTest {
         List<BookDto> actual = bookService.search(SEARCH_PARAMETERS);
 
         assertEquals(List.of(BOOK_DTO), actual);
-        verify(bookSpecificationBuilder, times(NUMBER_OF_INVOCATIONS))
-                .build(SEARCH_PARAMETERS);
-        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
-                .findAll(specification);
-        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Book.class));
+        verify(bookSpecificationBuilder).build(SEARCH_PARAMETERS);
+        verify(bookRepository).findAll(specification);
+        verify(bookMapper).toDto(any(Book.class));
     }
 
     @Test
@@ -235,9 +219,7 @@ public class BookServiceTest {
                 bookService.findAllByCategoryId(CATEGORY_ID);
 
         assertEquals(List.of(DTO_WITHOUT_CATEGORY_IDS), actual);
-        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDtoWithoutCategories(any(Book.class));
-        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
-                .findAllByCategoryId(anyLong());
+        verify(bookMapper).toDtoWithoutCategories(any(Book.class));
+        verify(bookRepository).findAllByCategoryId(anyLong());
     }
 }
