@@ -2,7 +2,8 @@ version: "3.8"
 
 services:
   postgresdb:
-    image: postgres
+    platform: linux/x86_64
+    image: postgres:16-alpine
     restart: unless-stopped
     env_file: ./.env
     environment:
@@ -31,6 +32,8 @@ services:
         "spring.datasource.url" : "jdbc:postgresql://postgresdb:$POSTGRES_DOCKER_PORT/$POSTGRES_DATABASE",
         "spring.datasource.username" : "$POSTGRES_USER",
         "spring.datasource.password" : "$POSTGRES_PASSWORD",
-        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect"
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+        "spring.datasource.driver-class-name" : "org.postgresql.Driver",
+        "spring.jpa.hibernate.ddl-auto" : "validate"
       }'
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
