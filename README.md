@@ -10,8 +10,10 @@ A ready-to-use **BookStore API** for online shops.
 
 - [👨‍💻Tech stack](#technologies-and-tools)
 - [⚡Quick start](#quick-start)
-- [🧑‍✈️Controllers](#controllers)
+- [‍✈️Controllers](#controllers)
 - [🧑‍🚀Postman Collection](#postman-collection)
+- [🏁Conclusion](#conclusion)
+- [📝License](#license)
 
 ## 👨‍💻Tech stack
 
@@ -50,7 +52,7 @@ docker-compose up
 ```
 That's all you need to know to start! 🎉
 
-## 🧑‍✈️Controllers
+## ‍✈️Controllers
 
 - [AuthenticationController](auth_controller): handles user registration and authorization.
 - [BookController](book_controller): manages book operations, such as creation, updating, deleting and search.
@@ -60,9 +62,13 @@ That's all you need to know to start! 🎉
 
 ## 🧑‍🚀Postman Collection
 
-For easy test, I've created a Postman [collection](Book Store API.postman_collection.json) and [environment](Book store API.postman_environment.json), that includes all user and admin requests.
+For easy test, I've created a Postman [collection](postman_collection) and [environment](postman_environment), that includes all user and admin requests.
 
-## License
+## 🏁Conclusion
+
+The **Bookstore API** offers a robust framework for constructing a platform dedicated to selling books. Whether you're initiating a fresh online bookstore or enhancing an already established one, this API enables you to efficiently handle books, orders, and customer information.
+
+## 📝License
 
 This project is licensed under the MIT license. Feel free to edit and distribute this template as you like.
 
@@ -74,3 +80,5 @@ This project is licensed under the MIT license. Feel free to edit and distribute
 [cart_controller]: https://github.com/Denis-Balako/Online-Book-Store/blob/master/src/main/java/com/balako/onlinebookstore/controller/CartController.java
 [category_controller]: https://github.com/Denis-Balako/Online-Book-Store/blob/master/src/main/java/com/balako/onlinebookstore/controller/CategoryController.java
 [order_controller]: https://github.com/Denis-Balako/Online-Book-Store/blob/master/src/main/java/com/balako/onlinebookstore/controller/OrderController.java
+[postman_collection]: https://github.com/Denis-Balako/Online-Book-Store/blob/master/Book%20Store%20API.postman_collection.json
+[postman_environment]: https://github.com/Denis-Balako/Online-Book-Store/blob/master/Book%20store%20API.postman_environment.json
