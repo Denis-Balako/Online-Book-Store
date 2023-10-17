@@ -12,6 +12,7 @@ A ready-to-use **BookStore API** for online shops.
 - [⚡Quick start](#quick-start)
 - [‍✈️Controllers](#controllers)
 - [🧑‍🚀Postman Collection](#postman-collection)
+- [🎥Video Presentation](#video-presentation)
 - [🏁Conclusion](#conclusion)
 - [📝License](#license)
 
@@ -46,10 +47,15 @@ mvn clean install
 ```
 Then, rise a **Docker** container of your app:
 ```bash
-docker build -t {your-image-name}
+docker build -t {your-image-name} .
 docker-compose build
 docker-compose up
 ```
+Also, you can run this project without docker, but before that, you need to configure the connection to your local database in the application properties. Run this command after that:
+```bash
+ mvn spring-boot:run
+```
+
 That's all you need to know to start! 🎉
 
 ## ‍✈️Controllers
@@ -63,6 +69,20 @@ That's all you need to know to start! 🎉
 ## 🧑‍🚀Postman Collection
 
 For easy test, I've created a Postman [collection](postman_collection) and [environment](postman_environment), that includes all user and admin requests.
+
+For access to all endpoints use *admin login* in *admin endpoints* folder or use admin credentials below:<br>
+
+Username: denis@example.com <br>
+Password: qwe123456789
+
+## 🎥Video Presentation
+
+This video shows the operation of the application in detail. 
+Here we will see how the search for books and categories works, the ability of the admin to change them,
+the user functionality, 
+and how the shopping cart and orders work. 
+
+Link : https://www.loom.com/share/19bad7530e49408dbd6e78cc9c209a67?sid=d4630fee-e404-45b8-a501-a45911e13071
 
 ## 🏁Conclusion
 
