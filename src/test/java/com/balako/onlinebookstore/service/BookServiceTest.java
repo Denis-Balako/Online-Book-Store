@@ -210,11 +210,12 @@ public class BookServiceTest {
         when(bookSpecificationBuilder.build(SEARCH_PARAMETERS))
                 .thenReturn(specification);
         when(bookRepository.findAll(specification)).thenReturn(List.of(BOOK));
-        when(bookMapper.toDto(any(Book.class))).thenReturn(BOOK_DTO);
+        when(bookMapper.toDtoWithoutCategories(any(Book.class)))
+                .thenReturn(DTO_WITHOUT_CATEGORY_IDS);
 
-        List<BookDto> actual = bookService.search(SEARCH_PARAMETERS);
+        List<BookDtoWithoutCategoryIds> actual = bookService.search(SEARCH_PARAMETERS);
 
-        assertEquals(List.of(BOOK_DTO), actual);
+        assertEquals(List.of(DTO_WITHOUT_CATEGORY_IDS), actual);
         verify(bookSpecificationBuilder, times(NUMBER_OF_INVOCATIONS))
                 .build(SEARCH_PARAMETERS);
         verify(bookRepository, times(NUMBER_OF_INVOCATIONS))

@@ -18,7 +18,7 @@ public interface BookService {
 
     BookDto update(Long id, CreateBookRequestDto requestDto);
 
-    List<BookDto> search(BookSearchParametersDto params);
+    List<BookDtoWithoutCategoryIds> search(BookSearchParametersDto params);
 
     List<BookDtoWithoutCategoryIds> findAllByCategoryId(Long id);
 }

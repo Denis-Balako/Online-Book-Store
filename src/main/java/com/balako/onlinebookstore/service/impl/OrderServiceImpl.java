@@ -49,7 +49,8 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(Status.getDefaultStatus());
         order.setOrderDate(LocalDateTime.now());
         order.setTotal(BigDecimal.valueOf(cart.getCartItems().stream()
-                .mapToInt(cartItem -> cartItem.getBook().getPrice().intValue())
+                .mapToDouble(cartItem -> cartItem.getBook().getPrice().doubleValue()
+                        * cartItem.getQuantity())
                 .sum()));
 
         Order savedOrder = orderRepository.save(order);
