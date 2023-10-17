@@ -4,7 +4,7 @@ import com.balako.onlinebookstore.dto.order.request.CreateOrderRequestDto;
 import com.balako.onlinebookstore.dto.order.request.UpdateOrderRequestDto;
 import com.balako.onlinebookstore.dto.order.response.OrderDto;
 import com.balako.onlinebookstore.dto.order.response.OrderItemDto;
-import com.balako.onlinebookstore.enums.Status;
+import com.balako.onlinebookstore.enums.OrderStatus;
 import com.balako.onlinebookstore.exception.EntityNotFoundException;
 import com.balako.onlinebookstore.mapper.OrderItemMapper;
 import com.balako.onlinebookstore.mapper.OrderMapper;
@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order order = orderMapper.toModel(requestDto);
         order.setUser(user);
-        order.setStatus(Status.getDefaultStatus());
+        order.setStatus(OrderStatus.getDefaultStatus());
         order.setOrderDate(LocalDateTime.now());
         order.setTotal(BigDecimal.valueOf(cart.getCartItems().stream()
                 .mapToDouble(cartItem -> cartItem.getBook().getPrice().doubleValue()
@@ -77,7 +77,7 @@ public class OrderServiceImpl implements OrderService {
                 () -> new EntityNotFoundException("Can't find order by id: " + id)
         );
         try {
-            order.setStatus(Status.valueOf(requestDto.status()));
+            order.setStatus(OrderStatus.valueOf(requestDto.status()));
         } catch (IllegalArgumentException e) {
             throw new EntityNotFoundException("Can't find status with name: "
                     + requestDto.status());

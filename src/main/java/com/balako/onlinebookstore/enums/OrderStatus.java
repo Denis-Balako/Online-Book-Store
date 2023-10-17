@@ -1,13 +1,13 @@
 package com.balako.onlinebookstore.enums;
 
-public enum Status {
+public enum OrderStatus {
     CREATED,
     PENDING,
     CANCELED,
     DELIVERED,
     COMPLETED;
 
-    public static Status getDefaultStatus() {
+    public static OrderStatus getDefaultStatus() {
         return CREATED;
     }
 }

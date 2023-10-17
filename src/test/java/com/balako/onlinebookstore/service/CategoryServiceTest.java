@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -73,10 +72,8 @@ public class CategoryServiceTest {
         List<CategoryDto> actual = categoryService.findAll(pageable);
 
         assertEquals(List.of(CATEGORY_DTO), actual);
-        verify(categoryMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Category.class));
-        verify(categoryRepository, times(NUMBER_OF_INVOCATIONS))
-                .findAll(pageable);
+        verify(categoryMapper).toDto(any(Category.class));
+        verify(categoryRepository).findAll(pageable);
     }
 
     @Test
@@ -89,10 +86,8 @@ public class CategoryServiceTest {
         CategoryDto actual = categoryService.getById(CATEGORY_ID);
 
         assertEquals(CATEGORY_DTO, actual);
-        verify(categoryMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Category.class));
-        verify(categoryRepository, times(NUMBER_OF_INVOCATIONS))
-                .findById(anyLong());
+        verify(categoryMapper).toDto(any(Category.class));
+        verify(categoryRepository).findById(anyLong());
     }
 
     @Test
@@ -107,8 +102,7 @@ public class CategoryServiceTest {
                         () -> categoryService.getById(CATEGORY_ID));
 
         assertEquals(expectedMessage, exception.getMessage());
-        verify(categoryRepository, times(NUMBER_OF_INVOCATIONS))
-                .findById(anyLong());
+        verify(categoryRepository).findById(anyLong());
         verifyNoMoreInteractions(categoryRepository);
         verifyNoInteractions(categoryMapper);
     }
@@ -125,12 +119,9 @@ public class CategoryServiceTest {
         CategoryDto actual = categoryService.save(REQUEST_DTO);
 
         assertEquals(CATEGORY_DTO, actual);
-        verify(categoryRepository, times(NUMBER_OF_INVOCATIONS))
-                .save(any(Category.class));
-        verify(categoryMapper, times(NUMBER_OF_INVOCATIONS))
-                .toModel(any(CreateCategoryRequestDto.class));
-        verify(categoryMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Category.class));
+        verify(categoryRepository).save(any(Category.class));
+        verify(categoryMapper).toModel(any(CreateCategoryRequestDto.class));
+        verify(categoryMapper).toDto(any(Category.class));
     }
 
     @Test
@@ -138,8 +129,7 @@ public class CategoryServiceTest {
     public void deleteById_validId_deleteSuccessful() {
         assertDoesNotThrow(() -> categoryService.deleteById(CATEGORY_ID));
 
-        verify(categoryRepository, times(NUMBER_OF_INVOCATIONS))
-                .deleteById(CATEGORY_ID);
+        verify(categoryRepository).deleteById(CATEGORY_ID);
     }
 
     @Test
@@ -155,11 +145,8 @@ public class CategoryServiceTest {
         CategoryDto actual = categoryService.update(CATEGORY_ID, REQUEST_DTO);
 
         assertEquals(CATEGORY_DTO, actual);
-        verify(categoryRepository, times(NUMBER_OF_INVOCATIONS))
-                .save(any(Category.class));
-        verify(categoryMapper, times(NUMBER_OF_INVOCATIONS))
-                .toModel(any(CreateCategoryRequestDto.class));
-        verify(categoryMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Category.class));
+        verify(categoryRepository).save(any(Category.class));
+        verify(categoryMapper).toModel(any(CreateCategoryRequestDto.class));
+        verify(categoryMapper).toDto(any(Category.class));
     }
 }
