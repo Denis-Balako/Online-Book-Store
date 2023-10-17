@@ -190,7 +190,8 @@ public class BookControllerTest {
                 new TypeReference<>() {});
 
         assertEquals(expected.size(), actual.size());
-        assertTrue(EqualsBuilder.reflectionEquals(expected.get(0), actual.get(0), "id"));
+        assertTrue(EqualsBuilder.reflectionEquals(expected.get(0), actual.get(0),
+                "id", "categories"));
     }
 
     @Test

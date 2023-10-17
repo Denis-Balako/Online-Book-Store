@@ -221,7 +221,7 @@ public class BookServiceTest {
         verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
                 .findAll(specification);
         verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
-                .toDto(any(Book.class));
+                .toDtoWithoutCategories(any(Book.class));
     }
 
     @Test
