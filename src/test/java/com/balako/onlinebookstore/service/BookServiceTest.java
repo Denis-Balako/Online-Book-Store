@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -197,14 +198,18 @@ public class BookServiceTest {
         when(bookSpecificationBuilder.build(SEARCH_PARAMETERS))
                 .thenReturn(specification);
         when(bookRepository.findAll(specification)).thenReturn(List.of(BOOK));
-        when(bookMapper.toDto(any(Book.class))).thenReturn(BOOK_DTO);
+        when(bookMapper.toDtoWithoutCategories(any(Book.class)))
+                .thenReturn(DTO_WITHOUT_CATEGORY_IDS);
 
-        List<BookDto> actual = bookService.search(SEARCH_PARAMETERS);
+        List<BookDtoWithoutCategoryIds> actual = bookService.search(SEARCH_PARAMETERS);
 
-        assertEquals(List.of(BOOK_DTO), actual);
-        verify(bookSpecificationBuilder).build(SEARCH_PARAMETERS);
-        verify(bookRepository).findAll(specification);
-        verify(bookMapper).toDto(any(Book.class));
+        assertEquals(List.of(DTO_WITHOUT_CATEGORY_IDS), actual);
+        verify(bookSpecificationBuilder, times(NUMBER_OF_INVOCATIONS))
+                .build(SEARCH_PARAMETERS);
+        verify(bookRepository, times(NUMBER_OF_INVOCATIONS))
+                .findAll(specification);
+        verify(bookMapper, times(NUMBER_OF_INVOCATIONS))
+                .toDtoWithoutCategories(any(Book.class));
     }
 
     @Test

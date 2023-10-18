@@ -3,6 +3,7 @@ package com.balako.onlinebookstore.controller;
 import com.balako.onlinebookstore.dto.book.request.BookSearchParametersDto;
 import com.balako.onlinebookstore.dto.book.request.CreateBookRequestDto;
 import com.balako.onlinebookstore.dto.book.response.BookDto;
+import com.balako.onlinebookstore.dto.book.response.BookDtoWithoutCategoryIds;
 import com.balako.onlinebookstore.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -56,7 +57,7 @@ public class BookController {
     @GetMapping("/search")
     @Operation(summary = "Search books by filter", description = "Search books by filter. "
             + "Available filters: title, author, isbn.")
-    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+    public List<BookDtoWithoutCategoryIds> searchBooks(BookSearchParametersDto searchParameters) {
         return bookService.search(searchParameters);
     }
 

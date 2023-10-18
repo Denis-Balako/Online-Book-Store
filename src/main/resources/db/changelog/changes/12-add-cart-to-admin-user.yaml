@@ -7,9 +7,6 @@ databaseChangeLog:
             tableName: cart
             columns:
               - column:
-                  name: id
-                  valueComputed: 1
-              - column:
                   name: user_id
                   valueComputed: 1
               - column:
